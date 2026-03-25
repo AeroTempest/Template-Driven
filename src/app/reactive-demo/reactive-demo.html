@@ -1,0 +1,66 @@
+<div class="container">
+  <h2>Reactive Form</h2>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- Username -->
+    <input type="text" formControlName="username" placeholder="Username">
+    <small *ngIf="f.username.touched && f.username.invalid">
+      Username must be at least 3 characters
+    </small>
+
+    <!-- Email -->
+    <input type="email" formControlName="email" placeholder="Email">
+    <small *ngIf="f.email.touched && f.email.invalid">
+      Enter a valid email
+    </small>
+
+    <!-- Password -->
+    <input type="password" formControlName="password" placeholder="Password">
+    <small *ngIf="f.password.touched && f.password.invalid">
+      Password must be at least 6 characters
+    </small>
+
+    <!-- Role -->
+    <select formControlName="role">
+      <option value="">Select Role</option>
+      <option>Admin</option>
+      <option>User</option>
+      <option>Guest</option>
+    </select>
+    <small *ngIf="f.role.touched && f.role.invalid">
+      Role is required
+    </small>
+
+    <!-- Gender -->
+    <div class="radio-group">
+      <p class="label">Gender</p>
+      <div class="radio-options">
+        <label><input type="radio" value="Male" formControlName="gender"> Male</label>
+        <label><input type="radio" value="Female" formControlName="gender"> Female</label>
+      </div>
+    </div>
+    <small *ngIf="f.gender.touched && f.gender.invalid">
+      Gender is required
+    </small>
+
+    <!-- Status -->
+    <select formControlName="status">
+      <option value="">Select Status</option>
+      <option>Permanent</option>
+      <option>Probationary</option>
+    </select>
+
+    <!-- Comments -->
+    <textarea formControlName="comments" placeholder="Comments"></textarea>
+
+    <button type="submit" [disabled]="form.invalid">
+      Submit
+    </button>
+
+  </form>
+
+  <div *ngIf="form.valid" class="output">
+    <pre>{{ form.value | json }}</pre>
+  </div>
+</div>
