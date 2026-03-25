@@ -1,0 +1,66 @@
+<div class="container">
+  <h2>Template Driven Form</h2>
+
+  <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+
+    <!-- Username -->
+    <input type="text" name="username" [(ngModel)]="user.username"
+      placeholder="Username" required>
+
+    <!-- Email -->
+    <input type="email" name="email" [(ngModel)]="user.email"
+      placeholder="Email" required>
+
+    <!-- Password -->
+    <input type="password" name="password" [(ngModel)]="user.password"
+      placeholder="Password" required minlength="6">
+
+    <!-- Role -->
+    <select name="role" [(ngModel)]="user.role" required>
+      <option value="" disabled selected>Select Role</option>
+      <option>Admin</option>
+      <option>User</option>
+      <option>Guest</option>
+    </select>
+
+    <!-- Gender -->
+    <div class="radio-group">
+  <p class="label">Gender</p>
+
+      <div class="radio-options">
+        <label>
+          <input type="radio" name="gender" value="Male" [(ngModel)]="user.gender">
+          Male
+        </label>
+
+        <label>
+          <input type="radio" name="gender" value="Female" [(ngModel)]="user.gender">
+          Female
+        </label>
+      </div>
+    </div>
+
+    <!-- Status -->
+    <select name="status" [(ngModel)]="user.status">
+      <option value="" disabled selected>Status</option>
+      <option>Permanent</option>
+      <option>Probationary</option>
+    </select>
+
+    <!-- Comments -->
+    <textarea name="comments" [(ngModel)]="user.comments"
+      placeholder="Comments"></textarea>
+
+    <!-- Submit -->
+    <button type="submit" [disabled]="myForm.invalid">
+      Submit
+    </button>
+
+  </form>
+
+  <!-- Output -->
+  <div *ngIf="submitted" class="output">
+    <h3>Form Data:</h3>
+    <pre>{{ user | json }}</pre>
+  </div>
+</div>
