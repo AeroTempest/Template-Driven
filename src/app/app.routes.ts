@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
-import { ReactiveDemoComponent } from './reactive-demo/reactive-demo';
+import { TemplateDemoComponent } from './template-demo/template-demo';
 
 export const routes: Routes = [
-  { path: '', component: ReactiveDemoComponent }
+  { path: '', component: TemplateDemoComponent },
+  { path: '**', redirectTo: '' }
 ];
